@@ -39,6 +39,8 @@ const requestNotificationPermission = async () => {
         }
        }
      })
+   }else{
+     console.log("Permission already granted!");
    }
 }
 
