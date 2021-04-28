@@ -11,7 +11,7 @@ const registerServiceWorker = async () => {
 }
 
 const requestNotificationPermission = async () => {
-  const permission = await Notification.requestPermission();
+  const permission = await Notification.requestPermission;
   if(permission !== 'granted'){
     console.error('Permission not granted');
     document.addEventListener("DOMContentLoaded", function(event){
