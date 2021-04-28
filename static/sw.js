@@ -77,5 +77,6 @@ async function showNotificationSW(title, body, swRegistration){
     icon : '/favicon.ico',
   }
 
-  return swRegistration.showNotification(title, {body : body} , options);
+  return swRegistration.showNotification(title, options);
+ // return swRegistration.showNotification(title, {body : body} , options);
 }
