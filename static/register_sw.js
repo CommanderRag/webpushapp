@@ -40,6 +40,7 @@ const requestNotificationPermission = async () => {
               userVisibleOnly : true,
             };
             const swRegistration = await registerServiceWorker();
+            console.log(JSON.stringify(swRegistration.pushManager.getSubscription()))
             const subscription = await swRegistration.pushManager.subscribe(options)
             console.log(JSON.stringify(subscription))
             postSubscriptionToServer(subscription);
