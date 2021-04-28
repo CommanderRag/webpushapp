@@ -246,7 +246,9 @@ from webpush_handler import trigger_push_notifications_for_subscriptions
 def triggerPushNotifications():
     json_data = request.get_json(force=True)
     print(str(json_data))
-    json_data = json.loads(json_data)
+    print(type(json_data))
+    if(not type(json_data) == 'dict'):
+        json_data = json.loads(json_data)
     db = client['Users']
     column = db['tokens']
 
@@ -266,7 +268,7 @@ def triggerPushNotifications():
 @app.route('/triggerTestPushNotification', methods=['POST'])
 def triggerTestPushNotification():
     json_dict = request.get_json(force=True)
-    print(str(json_data))
+    print(str(json_dict))
     db = client['Users']
     column = db['tokens']
 
@@ -276,7 +278,7 @@ def triggerTestPushNotification():
         subscriptions_list.append(subscription)
     
     
-    trigger_push_notifications_for_subscriptions(subscriptions=subscriptions_list, title=json_data['title'], body=json_data['body'], column=column)
+    trigger_push_notifications_for_subscriptions(subscriptions=subscriptions_list, title=json_dict['title'], body=json_dict['body'], column=column)
 
     return jsonify({
         'status' : 200,
