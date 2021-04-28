@@ -9,6 +9,7 @@ self.addEventListener('activate', async () => {
   try {
      fetch('/get-public-key').then(response => response.text()).then(async data =>{
       console.log("public key "+ data);
+      alert(data);
       serverPublicKey = urlB64ToUint8Array(data);
 
       console.info("server public key array", serverPublicKey);
