@@ -13,10 +13,14 @@ const registerServiceWorker = async () => {
 const requestNotificationPermission = async () => {
    const swRegistration = await registerServiceWorker();
    const permission = await Notification.permission;
+   
    if(permission !== 'granted'){
-     Notification.requestPermission().then(async (permission_n) => {
-       if(permission_n == "granted"){
+     
+    Notification.requestPermission().then(async (permission_n) => {
+       
+      if(permission_n == "granted"){
         let serverPublicKey;
+        
         try {
           fetch('/get-public-key').then(response => response.text()).then(async data =>{
             console.log("server public key "+ data);
@@ -34,14 +38,20 @@ const requestNotificationPermission = async () => {
             console.log(JSON.stringify(subscription))
             postSubscriptionToServer(subscription);
           })
-        }catch (error){
+        }
+        catch (error){
           console.error(error);
         }
+
        }
+
      })
-   }else{
+
+   }
+   else{
      console.log("Permission already granted!");
    }
+
 }
 
 
