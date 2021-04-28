@@ -27,6 +27,31 @@ const requestNotificationPermission = async () => {
     if(permission === 'granted'){
       console.info('Permission already granted!');
       
+
+      document.addEventListener("DOMContentLoaded", function(event){
+        document.getElementById("testPushButtonStyle").disabled = false;
+        document.getElementById("testPushButtonStyle").enabled = true;
+      });
+  };
+  
+    main();
+  });
+}
+
+
+const main = async () => {
+  check();
+  const swRegistration = await registerServiceWorker();
+  const permission = await Notification.requestPermission();
+  document.addEventListener("DOMContentLoaded", function(event){
+    if(permission !== "granted"){
+    document.getElementById("testPushButtonStyle").disabled = true;
+    document.getElementById("testPushButtonStyle").enabled = false;
+    }
+    if(permission === "granted"){
+      document.getElementById("testPushButtonStyle").disabled = false;
+      document.getElementById("testPushButtonStyle").enabled = true;
+
       let serverPublicKey;
       try {
           fetch('/get-public-key').then(response => response.text()).then(async data =>{
@@ -48,31 +73,6 @@ const requestNotificationPermission = async () => {
         }catch (error){
           console.error(error);
         }
-
-      document.addEventListener("DOMContentLoaded", function(event){
-        document.getElementById("testPushButtonStyle").disabled = false;
-        document.getElementById("testPushButtonStyle").enabled = true;
-      });
-  };
-  
-    main();
-  });
-}
-
-
-const main = async () => {
-  check();
-  const swRegistration = await registerServiceWorker();
-  document.addEventListener("DOMContentLoaded", function(event){
-    if(Notification.permission !== "granted"){
-    document.getElementById("testPushButtonStyle").disabled = true;
-    document.getElementById("testPushButtonStyle").enabled = false;
-    }
-    if(Notification.permission === "granted"){
-      document.getElementById("testPushButtonStyle").disabled = false;
-      document.getElementById("testPushButtonStyle").enabled = true;
     }
   });
 }
-
-main()
