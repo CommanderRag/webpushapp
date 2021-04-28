@@ -4,7 +4,6 @@ self.addEventListener('install', async () => {
 
 self.addEventListener('activate', async () => {
   console.log('Service worker activating.');
-  alert('service worker activating')
   let serverPublicKey;
   try {
      fetch('/get-public-key').then(response => response.text()).then(async data =>{
