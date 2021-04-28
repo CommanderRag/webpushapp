@@ -1,5 +1,4 @@
 from pywebpush import webpush, WebPushException
-from flask_pywebpush import WebPush
 import json
 from main import app
 
