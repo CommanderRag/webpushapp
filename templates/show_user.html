@@ -1,0 +1,78 @@
+<html>
+
+
+<head>
+    <title>Test</title>
+    <script src="{{ url_for('static', filename='delete.js' ) }}"></script>
+    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    
+
+
+
+
+</head>
+
+<body>
+    <p class="text" style="background-color: white;">Hello, {{data}}</p>
+    <button class="_efq" onclick="delete_acc()">Delete account</button>
+<style>
+    .text{
+        height: 200px;
+        width: 400px;
+        text-align: center;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -100px;
+        margin-left: -200px;
+        padding: 1px;
+
+    }
+
+
+    ._efq{
+         background-color: rgb(16, 82, 223);position: relative; bottom: -350px; right: -700px; background-size: 25px; 
+         display: inline-block;
+         border-radius: 5px; 
+         box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24); 
+         cursor: pointer; 
+         outline: none; 
+         transition: 0.2s all;
+         width: 300px;
+         top: 50%;
+         left: 50%;
+         margin-left: -150px;
+         transform: translateY -50%;
+    
+    }
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="{{ url_for('static', filename='delete.js' ) }}"></script>
+</body>
+
+
+
+
+</html>

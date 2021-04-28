@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <title>Homepage</title>
+    
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    
+    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+
+    <style>
+        @font-face {
+            font-family: CloisterBlack;
+            src: local('CloisterBlack.ttf');
+        }
+        h1{
+            font-family: CloisterBlack
+        }
+    </style>
+
+           
+</head>
+
+<body>
+    <header>
+        <h1>WebPush Notifications</h1>
+
+    </header>
+    <main>
+            <button onclick="requestNotificationPermission()">Request Permission</button>
+            <hr>
+            <p>You can test push notification below.</p>
+            
+            <button type="submit"  class="testPushButtonStyle"  onclick="sendTestNotification()">Test Push Notification</button>
+        
+        
+      
+    </main>
+    <a class="link1" href="signup">Signup</a>
+    <style>
+        .link1{
+            bottom:right; right : 200px; text-align:right; color:rgb(16, 82, 223); position: relative; bottom:-50px; right:-590px;
+        }
+    </style>
+    <a class = "link2" href="login">Login</a>
+    <style>
+        .link2{
+            bottom:right; right:200px; text-align:right; color: rgb(16, 82, 223); position:relative; bottom:-50px; right:-620px;
+        }
+    </style>
+
+    <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+    <script src="{{ url_for('static', filename='main.js' ) }}"></script>
+    <script src="{{ url_for('static', filename='sw.js' ) }}"></script>
+    <script src="{{ url_for('static', filename='register_sw.js') }}"></script>
+    <script type="text/javascript">
+        registerServiceWorker(
+            "/static/register_sw.js",
+            "{{ config['VAPID_PUBLIC_KEY'] }}",
+            "/registerSubscriptions"
+        );
+    </script>
+ </body>
+
+
+
+</html>

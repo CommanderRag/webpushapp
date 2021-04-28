@@ -1,0 +1,7 @@
+flask
+Flask-PyMongo
+dnspython
+pywebpush
+gunicorn
+requests
+APScheduler

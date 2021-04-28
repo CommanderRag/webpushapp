@@ -1,0 +1,2 @@
+Jobstore default:
+    test (trigger: cron[hour='11', minute='36'], next run at: 2020-08-16 11:36:00 IST)

@@ -1,0 +1,22 @@
+<!doctype html>
+<title>Signup</title>
+<style>
+  .flashes{
+    padding: 8px;
+    background-color: rgb(199, 77, 61);
+    color: white;
+    size: 10px;
+    background-size: 24px;
+    width: max-content;
+  }
+</style>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+{% block body %}{% endblock %}
