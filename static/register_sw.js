@@ -11,35 +11,38 @@ const registerServiceWorker = async () => {
 }
 
 const requestNotificationPermission = async () => {
-  const permission = await Notification.requestPermission;
-  if(permission !== 'granted'){
-    console.error('Permission not granted');
-    document.addEventListener("DOMContentLoaded", function(event){
-      document.getElementById("testPushButtonStyle").disabled = true;
-    });
-  }
-  if(permission === 'denied'){
-    document.addEventListener("DOMContentLoaded", function(event){
-      document.getElementById("testPushButtonStyle").enabled = false;
-      document.getElementById("testPushButtonStyle").disabled = true;
-    });
-  }
-  if(permission === 'granted'){
-    console.info('Permission already granted!');
-    document.addEventListener("DOMContentLoaded", function(event){
-      document.getElementById("testPushButtonStyle").disabled = false;
-      document.getElementById("testPushButtonStyle").enabled = true;
-      navigator.serviceWorker.getRegistrations().then(async (registrations) => {
-        for(let registration of registrations){
-          await registration.unregister();
-        }
-        await registerServiceWorker();
-      })
-
-    });
+  await Notification.requestPermission().then(async (permission) => {
+    if(permission !== 'granted'){
+      console.error('Permission not granted');
+      document.addEventListener("DOMContentLoaded", function(event){
+        document.getElementById("testPushButtonStyle").disabled = true;
+      });
+    }
+    if(permission === 'denied'){
+      document.addEventListener("DOMContentLoaded", function(event){
+        document.getElementById("testPushButtonStyle").enabled = false;
+        document.getElementById("testPushButtonStyle").disabled = true;
+      });
+    }
+    if(permission === 'granted'){
+      console.info('Permission already granted!');
+      document.addEventListener("DOMContentLoaded", function(event){
+        document.getElementById("testPushButtonStyle").disabled = false;
+        document.getElementById("testPushButtonStyle").enabled = true;
+        navigator.serviceWorker.getRegistrations().then(async (registrations) => {
+          for(let registration of registrations){
+            await registration.unregister();
+          }
+          await registerServiceWorker();
+        })
+  
+      });
+  };
+  
     main();
-  }
+  });
 }
+
 
 const main = async () => {
   check();
