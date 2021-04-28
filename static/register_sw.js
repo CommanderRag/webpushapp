@@ -26,8 +26,6 @@ const requestNotificationPermission = async () => {
     }
     if(permission === 'granted'){
       console.info('Permission already granted!');
-
-
       let serverPublicKey;
       try {
           fetch('/get-public-key').then(response => response.text()).then(async data =>{
