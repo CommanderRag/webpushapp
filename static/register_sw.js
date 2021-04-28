@@ -11,31 +11,9 @@ const registerServiceWorker = async () => {
 }
 
 const requestNotificationPermission = async () => {
-   Notification.requestPermission().then(async (permission) => {
-    if(permission !== 'granted'){
-      console.error('Permission not granted');
-      document.addEventListener("DOMContentLoaded", function(event){
-        document.getElementById("testPushButtonStyle").disabled = true;
-      });
-    }
-    if(permission === 'denied'){
-      document.addEventListener("DOMContentLoaded", function(event){
-        document.getElementById("testPushButtonStyle").enabled = false;
-        document.getElementById("testPushButtonStyle").disabled = true;
-      });
-    }
-    if(permission === 'granted'){
-      console.info('Permission already granted!');
-      
-
-      document.addEventListener("DOMContentLoaded", function(event){
-        document.getElementById("testPushButtonStyle").disabled = false;
-        document.getElementById("testPushButtonStyle").enabled = true;
-      });
-  };
-  
-    main();
-  });
+   const swRegistration = await registerServiceWorker();
+   const permission = Notification.permission
+   console.log(permission);
 }
 
 
