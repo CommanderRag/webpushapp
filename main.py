@@ -23,7 +23,7 @@ def true():
         'title' : 'Notification',
         'body' : message,
     }
-    req = requests.post("https://mywebpushapp.herokuapp.com/triggerPushNotifications", headers=request_header, json=json.dumps(dict_to_send))
+    req = requests.post("https://mywebpushapp.herokuapp.com/triggerPushNotifications", headers=request_header, json=dict_to_send)
     print(req.status_code, req.reason)
 
 
@@ -39,7 +39,7 @@ def false():
         'title' : 'Notification',
         'body' : message,
     }
-    req = requests.post("https://mywebpushapp.herokuapp.com/triggerPushNotifications", headers=request_header, json=json.dumps(dict_to_send))
+    req = requests.post("https://mywebpushapp.herokuapp.com/triggerPushNotifications", headers=request_header, json=dict_to_send)
     print(req.status_code, req.reason)
 
 
