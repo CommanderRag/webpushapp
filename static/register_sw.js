@@ -18,12 +18,24 @@ const requestNotificationPermission = async () => {
       document.getElementById("testPushButtonStyle").disabled = true;
     });
   }
+  if(permission === 'denied'){
+    document.addEventListener("DOMContentLoaded", function(event){
+      document.getElementById("testPushButtonStyle").enabled = false;
+      document.getElementById("testPushButtonStyle").disabled = true;
+    });
+  }
   if(permission === 'granted'){
     console.info('Permission already granted!');
     document.addEventListener("DOMContentLoaded", function(event){
       document.getElementById("testPushButtonStyle").disabled = false;
       document.getElementById("testPushButtonStyle").enabled = true;
-      await registerServiceWorker();
+      navigator.serviceWorker.getRegistrations().then(async (registrations) => {
+        for(let registration of registrations){
+          registration.unregister();
+        }
+        await registerServiceWorker();
+      })
+
     });
     main();
   }
