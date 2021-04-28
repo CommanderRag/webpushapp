@@ -12,7 +12,7 @@ const registerServiceWorker = async () => {
 
 const requestNotificationPermission = async () => {
    const swRegistration = await registerServiceWorker();
-   const permission = Notification.permission
+   const permission = await Notification.permission();
    if(permission !== 'granted'){
      Notification.requestPermission().then(async (permission_n) => {
        if(permission_n == "granted"){
