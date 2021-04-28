@@ -256,6 +256,7 @@ def triggerPushNotifications():
     for subscription in subscriptions:
         subscriptions_list.append(subscription)
     
+    
     trigger_push_notifications_for_subscriptions(subscriptions=subscriptions_list, title=json_data['title'], body=json_data['body'], column=column)
 
     return jsonify({

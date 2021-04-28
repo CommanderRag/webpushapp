@@ -21,7 +21,10 @@ def trigger_push_notification(push_subscription, title, body, column):
                   extra.errno,
                   extra.message
                   )
-                  
+            if(extra.code == 404 or extra.code == 410 or extra.errno == 404 or extra.errorno == 410):
+                subscription_delete = push_subscription['subscription_json']
+                column.delete_one({'endpoint' : subscription_delete['endpoint']})
+                print("Deleted "  , subscription_delete)
         return False
 
 
