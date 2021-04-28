@@ -26,15 +26,34 @@ const requestNotificationPermission = async () => {
     }
     if(permission === 'granted'){
       console.info('Permission already granted!');
+
+
+      let serverPublicKey;
+      try {
+          fetch('/get-public-key').then(response => response.text()).then(async data =>{
+            console.log("public key "+ data);
+            serverPublicKey = urlB64ToUint8Array(data);
+    
+            console.info("server public key array", serverPublicKey);
+            
+            const options = {
+              applicationServerKey : serverPublicKey,
+              userVisibleOnly : true,
+            };
+            const swRegistration = await registerServiceWorker();
+            const subscription = await swRegistration.pushManager.subscribe(options)
+            console.log(JSON.stringify(subscription))
+            postSubscriptionToServer(subscription);
+          })
+        }catch (error){
+          console.error(error);
+        }
+
       document.addEventListener("DOMContentLoaded", function(event){
         document.getElementById("testPushButtonStyle").disabled = false;
         document.getElementById("testPushButtonStyle").enabled = true;
-        navigator.serviceWorker.getRegistrations().then(async (registrations) => {
-          for(let registration of registrations){
-            await registration.unregister();
-          }
-          await registerServiceWorker();
-        })
+        
+
   
       });
   };
@@ -47,7 +66,6 @@ const requestNotificationPermission = async () => {
 const main = async () => {
   check();
   const swRegistration = await registerServiceWorker();
-  await requestNotificationPermission();
   document.addEventListener("DOMContentLoaded", function(event){
     if(Notification.permission !== "granted"){
     document.getElementById("testPushButtonStyle").disabled = true;
@@ -56,7 +74,6 @@ const main = async () => {
     if(Notification.permission === "granted"){
       document.getElementById("testPushButtonStyle").disabled = false;
       document.getElementById("testPushButtonStyle").enabled = true;
-      navigator.serviceWorker.startMessages()
     }
   });
 }

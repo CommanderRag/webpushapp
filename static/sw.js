@@ -4,26 +4,6 @@ self.addEventListener('install', async () => {
 
 self.addEventListener('activate', async () => {
   console.log('Service worker activating.');
-  let serverPublicKey;
-  try {
-      fetch('/get-public-key').then(response => response.text()).then(async data =>{
-        console.log("public key "+ data);
-        serverPublicKey = urlB64ToUint8Array(data);
-
-        console.info("server public key array", serverPublicKey);
-        
-        const options = {
-          applicationServerKey : serverPublicKey,
-          userVisibleOnly : true,
-        };
-
-        const subscription = await self.registration.pushManager.subscribe(options)
-
-        postSubscriptionToServer(subscription);
-      })
-    }catch (error){
-      console.error(error);
-    }
 }
 
 )
