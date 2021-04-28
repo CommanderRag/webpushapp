@@ -246,9 +246,6 @@ from webpush_handler import trigger_push_notifications_for_subscriptions
 def triggerPushNotifications():
     json_data = request.get_json(force=True)
     print(str(json_data))
-    print(type(json_data))
-    if(not type(json_data) == 'dict'):
-        json_data = json.loads(json_data)
     db = client['Users']
     column = db['tokens']
 
