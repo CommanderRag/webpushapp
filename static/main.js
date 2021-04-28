@@ -1,5 +1,5 @@
 function sendTestNotification(){
-	fetch('/triggerPushNotifications', {
+	fetch('/triggerTestPushNotification', {
 		method : 'POST',
 		headers : {
 			'Content-Type' : 'application/json'

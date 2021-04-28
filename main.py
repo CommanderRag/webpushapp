@@ -53,8 +53,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config.from_pyfile('secrets.cfg.py')
 
 mongo_uri = "mongodb+srv://admin:" + urllib.parse.quote("a@777security") + "@webservice.btgcm.mongodb.net/Users?retryWrites=true&w=majority"
-#app.config['MONGO_URI'] = "mongodb+srv://admin:a@777security@webservice.btgcm.mongodb.net/Users?retryWrites=true&w=majority"
-#app.config['MONGO_URI'] = mongo_uri
 
 client = MongoClient(mongo_uri)
 
@@ -265,6 +263,25 @@ def triggerPushNotifications():
         "result" : 200
     })
 
+@app.route('/triggerTestPushNotification', methods=['POST'])
+def triggerTestPushNotification():
+    json_dict = request.get_json(force=True)
+    print(str(json_data))
+    db = client['Users']
+    column = db['tokens']
+
+    subscriptions = column.find()
+    subscriptions_list = []
+    for subscription in subscriptions:
+        subscriptions_list.append(subscription)
+    
+    
+    trigger_push_notifications_for_subscriptions(subscriptions=subscriptions_list, title=json_data['title'], body=json_data['body'], column=column)
+
+    return jsonify({
+        'status' : 200,
+        'result' : "success"
+    })
 
 @app.route('/get-public-key', methods=['GET'])
 def get_public_key():
