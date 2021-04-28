@@ -31,7 +31,7 @@ const requestNotificationPermission = async () => {
       document.getElementById("testPushButtonStyle").enabled = true;
       navigator.serviceWorker.getRegistrations().then(async (registrations) => {
         for(let registration of registrations){
-          registration.unregister();
+          await registration.unregister();
         }
         await registerServiceWorker();
       })
