@@ -1,3 +1,5 @@
+
+
 function sendTestNotification(){
 	fetch('/triggerTestPushNotification', {
 		method : 'POST',
