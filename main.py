@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, json, jsonify, json, flash, redirect, send_file, send_from_directory
+from flask import Flask, render_template, request, json, jsonify, flash, redirect, send_file, send_from_directory
 from flask_pymongo import MongoClient
 import urllib
 from werkzeug.utils import secure_filename
@@ -15,19 +15,15 @@ def true():
     number=request.get_json(force=True)
     data = number['number']
     message = "Episode {} is out now!".format(data) 
-    print(data)
-    '''
-    header = {"Content-Type": "application/json; charset=utf-8",
-          "Authorization": "Basic NGEwMGZmMjItY2NkNy0xMWUzLTk5ZDUtMDAwYzI5NDBlNjJj"}
-    payload = {"app_id": "6844009f-6ec9-481f-a425-0f9da3d85c75",
-           "include_player_ids": ["7e4f8084-a6b4-4748-a106-0f57894e46b7", "fa2c9627-7c2b-402c-be6c-102c5356e145"],
-           "contents":{"en":"Episode {} is out now!".format(data)},
-           "url":"https://4anime.to/boruto-naruto-next-generations-episode-{}".format(data)
-
-              }
-    '''
-    #req = requests.post("https://onesignal.com/api/v1/notifications", headers=header, data=json.dumps(payload))
-    req = requests.post("https://notify.run/XjxvUseko8HwuqsF", data=message)
+    print(message)
+    request_header = {
+        'Content-Type' : 'application/json'
+    }
+    dict_to_send = {
+        'title' : 'Notification',
+        'body' : message,
+    }
+    req = requests.post("https://mywebpushapp.herokuapp.com/triggerPushNotifications", headers=request_header, json=json.dumps(dict_to_send))
     print(req.status_code, req.reason)
 
 
@@ -35,19 +31,15 @@ def false():
     number=request.get_json(force=True)
     data = number['number']
     message = "Episode {} is not out yet!".format(data) 
-    print(data)
-    '''
-    header = {"Content-Type": "application/json; charset=utf-8",
-          "Authorization": "Basic NGEwMGZmMjItY2NkNy0xMWUzLTk5ZDUtMDAwYzI5NDBlNjJj"}
-    payload = {"app_id": "6844009f-6ec9-481f-a425-0f9da3d85c75",
-           "include_player_ids": ["7e4f8084-a6b4-4748-a106-0f57894e46b7", "fa2c9627-7c2b-402c-be6c-102c5356e145"],
-           "contents":{"en":"Episode {} is not out yet!".format(data)},
-           "url":"https://4anime.to/boruto-naruto-next-generations-episode-{}".format(data)
-
-              }
-    '''
-    #req = requests.post("https://onesignal.com/api/v1/notifications", headers=header, data=json.dumps(payload))
-    req = requests.post("https://notify.run/XjxvUseko8HwuqsF", data=message)
+    print(message)
+    request_header = {
+        'Content-Type' : 'application/json'
+    }
+    dict_to_send = {
+        'title' : 'Notification',
+        'body' : message,
+    }
+    req = requests.post("https://mywebpushapp.herokuapp.com/triggerPushNotifications", headers=request_header, json=json.dumps(dict_to_send))
     print(req.status_code, req.reason)
 
 
