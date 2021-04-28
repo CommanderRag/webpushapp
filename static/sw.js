@@ -59,5 +59,4 @@ async function showNotificationSW(title, body, swRegistration){
   }
 
   return swRegistration.showNotification(title, options);
- // return swRegistration.showNotification(title, {body : body} , options);
 }
