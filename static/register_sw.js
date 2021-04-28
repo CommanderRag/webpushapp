@@ -13,25 +13,11 @@ const registerServiceWorker = async () => {
 const requestNotificationPermission = async () => {
    const swRegistration = await registerServiceWorker();
    const permission = Notification.permission
-   console.log(permission);
-}
-
-
-const main = async () => {
-  check();
-  const swRegistration = await registerServiceWorker();
-  const permission = await Notification.requestPermission();
-  document.addEventListener("DOMContentLoaded", function(event){
-    if(permission !== "granted"){
-    document.getElementById("testPushButtonStyle").disabled = true;
-    document.getElementById("testPushButtonStyle").enabled = false;
-    }
-    if(permission === "granted"){
-      document.getElementById("testPushButtonStyle").disabled = false;
-      document.getElementById("testPushButtonStyle").enabled = true;
-
-      let serverPublicKey;
-      try {
+   if(permission !== 'granted'){
+     Notification.requestPermission().then(async (permission_n) => {
+       if(permission_n == "granted"){
+        let serverPublicKey;
+        try {
           fetch('/get-public-key').then(response => response.text()).then(async data =>{
             console.log("server public key "+ data);
             serverPublicKey = urlB64ToUint8Array(data);
@@ -51,6 +37,25 @@ const main = async () => {
         }catch (error){
           console.error(error);
         }
+       }
+     })
+   }
+}
+
+
+const main = async () => {
+  check();
+  const swRegistration = await registerServiceWorker();
+  const permission = await Notification.requestPermission();
+  document.addEventListener("DOMContentLoaded", function(event){
+    if(permission !== "granted"){
+    document.getElementById("testPushButtonStyle").disabled = true;
+    document.getElementById("testPushButtonStyle").enabled = false;
+    }
+    if(permission === "granted"){
+      document.getElementById("testPushButtonStyle").disabled = false;
+      document.getElementById("testPushButtonStyle").enabled = true;
+    
     }
   });
 }
