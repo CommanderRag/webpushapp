@@ -5,7 +5,7 @@ self.addEventListener('install', async () => {
 self.addEventListener('activate', async () => {
   console.log('Service worker activating.');
   let serverPublicKey;
-  const permission = await Notification.requestPermission();
+  const permission = Notification.permission();
   if(permission === 'granted'){
   try {
       fetch('/get-public-key').then(response => response.text()).then(async data =>{
