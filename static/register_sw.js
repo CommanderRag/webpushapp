@@ -50,9 +50,6 @@ const requestNotificationPermission = async () => {
       document.addEventListener("DOMContentLoaded", function(event){
         document.getElementById("testPushButtonStyle").disabled = false;
         document.getElementById("testPushButtonStyle").enabled = true;
-        
-
-  
       });
   };
   
