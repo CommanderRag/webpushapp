@@ -47,6 +47,7 @@ const requestNotificationPermission = async () => {
 const main = async () => {
   check();
   const swRegistration = await registerServiceWorker();
+  await requestNotificationPermission();
   document.addEventListener("DOMContentLoaded", function(event){
     if(Notification.permission !== "granted"){
     document.getElementById("testPushButtonStyle").disabled = true;
