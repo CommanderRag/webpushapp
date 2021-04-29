@@ -19,12 +19,12 @@ function animateButtonTransition(){
 		$('.testPushButtonStyle').attr("disabled", false);
 		$('.testPushButtonStyle').attr("enabled", true);
 		$(".testPushButtonStyle").removeClass("animated");
-		}, 600)
+		}, 1501)
 	}
 }
 
 function triggerButtonTransition(){
-	setTimeout(animateButtonTransition, 3000);
+	setTimeout(animateButtonTransition, 1500);
 }
 
 triggerButtonTransition();
