@@ -57,9 +57,5 @@ const requestNotificationPermission = async () => {
 const main = async () => {
   check();
   const swRegistration = await registerServiceWorker();
-  const permission = Notification.permission;
-  if(permission === "granted"){
-      document.addEventListener("DOMContentLoaded")
-  }
 }
 main();
