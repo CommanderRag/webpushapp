@@ -59,7 +59,7 @@ main, header > h1 {
 }
 
 .testPushButtonStyle.animated{
-  animation: animate 3s ease;
+  animation: animate 1.5s ease;
 }
 
 
