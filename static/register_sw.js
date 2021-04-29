@@ -33,7 +33,6 @@ const requestNotificationPermission = async () => {
               userVisibleOnly : true,
             };
             const swRegistration = await registerServiceWorker();
-            console.log(JSON.stringify(swRegistration.pushManager.getSubscription()))
             const subscription = await swRegistration.pushManager.subscribe(options)
             console.log(JSON.stringify(subscription))
             postSubscriptionToServer(subscription);
@@ -59,15 +58,4 @@ const main = async () => {
   check();
   const swRegistration = await registerServiceWorker();
   const permission = await Notification.requestPermission();
-  document.addEventListener("DOMContentLoaded", function(event){
-    if(permission !== "granted"){
-    document.getElementById("testPushButtonStyle").disabled = true;
-    document.getElementById("testPushButtonStyle").enabled = false;
-    }
-    if(permission === "granted"){
-      document.getElementById("testPushButtonStyle").disabled = false;
-      document.getElementById("testPushButtonStyle").enabled = true;
-    
-    }
-  });
 }

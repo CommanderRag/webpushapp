@@ -46,7 +46,7 @@ main, header > h1 {
     }
   }
   
-.testPushButtonStyle:enabled{
+.testPushButtonStyle:enabled, .testPushButtonStyle[active]{
     background: rgb(0, 191, 255);
     background-color: rgb(0, 191, 255);
     text-align: center;
@@ -58,11 +58,12 @@ main, header > h1 {
     text-align: center;
 }
 
-.testPushButtonStyle:active{
+.testPushButtonStyle:active, .testPushButtonStyle[active]{
     background-color: rgb(60, 191, 255);
 }
 
-.testPushButtonStyle:hover{
+
+.testPushButtonStyle:hover, .testPushButtonStyle[disabled]{
   border: 1px;
 }
 

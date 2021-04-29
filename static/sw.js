@@ -48,6 +48,14 @@ async function postSubscriptionToServer(subscription){
         'Content-Type' : 'application/json'
       },
       body : JSON.stringify(subscription)
+    }).then(response => response.text).then(data => {
+
+      json_obj = JSON.parse(data);
+      console.log(JSON.stringify(data))
+      if(json_obj.status == 200){
+          document.getElementById("testPushButtonStyle").disabled=false;
+          document.getElementById("testPushButtonStyle").enabled=true;       
+      }
     })
 }
 
