@@ -19,7 +19,7 @@ function animateButtonTransition(){
 		$('.testPushButtonStyle').attr("disabled", false);
 		$('.testPushButtonStyle').attr("enabled", true);
 		$(".testPushButtonStyle").removeClass("animated");
-		}, 1800)
+		}, 1500)
 	}
 }
 
