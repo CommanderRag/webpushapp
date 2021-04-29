@@ -10,11 +10,3 @@ function sendTestNotification(){
 		})
 	})
 }
-
-
-function disableTestPushButton(){
-	var element = document.getElementById("testPushButtonStyle")
-	element.disabled = true;
-}
-
-disableTestPushButton();
