@@ -58,6 +58,11 @@ main, header > h1 {
     text-align: center;
 }
 
+.testPushButtonStyle.animated{
+  animation: animate 3s ease;
+}
+
+
 @keyframes animate {
   from {background-color: grey;}
   to {background-color: rgb(0, 191, 255);}

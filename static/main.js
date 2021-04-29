@@ -14,9 +14,12 @@ function sendTestNotification(){
 
 function animateButtonTransition(){
 	if(Notification.permission === "granted"){
-	document.getElementById("testPushButtonStyle").style.animation="animate 3s";
-	document.getElementById("testPushButtonStyle").disabled=false;
-	document.getElementById("testPushButtonStyle").enabled=true;
+	$('.testPushButtonStyle').addClass('animated');
+	setTimeout(function(){
+		document.getElementById("testPushButtonStyle").disabled=false;
+		document.getElementById("testPushButtonStyle").enabled=true;
+		$(".testPushButtonStyle").removeClass("animated");
+		}, 600)
 	}
 }
 
