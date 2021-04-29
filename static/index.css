@@ -58,6 +58,11 @@ main, header > h1 {
     text-align: center;
 }
 
+@keyframes animate {
+  from {background-color: grey;}
+  to {background-color: rgb(0, 191, 255);}
+}
+
 .testPushButtonStyle:active, .testPushButtonStyle[active]{
     background-color: rgb(60, 191, 255);
 }
