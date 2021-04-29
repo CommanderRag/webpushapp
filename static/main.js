@@ -16,8 +16,8 @@ function animateButtonTransition(){
 	if(Notification.permission === "granted"){
 	$('.testPushButtonStyle').addClass('animated');
 	setTimeout(function(){
-		document.getElementById(".testPushButtonStyle").disabled=false;
-		document.getElementById(".testPushButtonStyle").enabled=true;
+		$('.testPushButtonStyle').attr("disabled", false);
+		$('.testPushButtonStyle').attr("enabled", true);
 		$(".testPushButtonStyle").removeClass("animated");
 		}, 600)
 	}
