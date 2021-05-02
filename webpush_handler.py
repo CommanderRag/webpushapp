@@ -10,7 +10,8 @@ def trigger_push_notification(push_subscription, title, body, column):
             vapid_private_key=app.config["VAPID_PRIVATE_KEY"],
             vapid_claims={
                 "sub" : "mailto:{}".format(app.config["VAPID_CLAIM_EMAIL"])
-            }
+            },
+            ttl=60*60*24*3
         )
         return response.ok
     except WebPushException as exception:
