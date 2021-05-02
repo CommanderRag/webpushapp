@@ -53,8 +53,12 @@ async function postSubscriptionToServer(subscription){
       json_obj = JSON.parse(data);
       console.log(JSON.stringify(data))
       if(json_obj.status == 200){
-          document.getElementById("testPushButtonStyle").disabled=false;
-          document.getElementById("testPushButtonStyle").enabled=true;       
+        $('.testPushButtonStyle').addClass('animated');
+        setTimeout(function(){
+          $('.testPushButtonStyle').attr("disabled", false);
+          $('.testPushButtonStyle').attr("enabled", true);
+          $(".testPushButtonStyle").removeClass("animated");
+          }, 1500)     
       }
     })
 }
@@ -64,6 +68,7 @@ async function showNotificationSW(title, body, swRegistration){
     title : title,
     body: body,
     icon : '/favicon.ico',
+    badge : '/favicon.ico'
   }
 
   return swRegistration.showNotification(title, options);
