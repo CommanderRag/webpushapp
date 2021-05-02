@@ -68,7 +68,9 @@ async function showNotificationSW(title, body, swRegistration){
     title : title,
     body: body,
     icon : '/favicon.ico',
-    badge : '/favicon.ico'
+    badge : '/favicon.ico',
+    tag : 'notification',
+    renotify : true,
   }
 
   return swRegistration.showNotification(title, options);
