@@ -50,17 +50,14 @@ async function postSubscriptionToServer(subscription){
       body : JSON.stringify(subscription)
     }).then(response => response.text).then(data => {
 
-      json_obj = JSON.parse(data);
-      console.log(JSON.stringify(data))
-      if(json_obj.status === 200 || json_obj.result === "success"){
         $('.testPushButtonStyle').addClass('animated');
         setTimeout(function(){
           $('.testPushButtonStyle').attr("disabled", false);
           $('.testPushButtonStyle').attr("enabled", true);
           $(".testPushButtonStyle").removeClass("animated");
           }, 1500)     
-      }
-    })
+      });
+    
 }
 
 async function showNotificationSW(title, body, swRegistration){

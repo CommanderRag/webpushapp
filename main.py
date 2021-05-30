@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, json, jsonify, flash, redirect, send_file, send_from_directory
+from flask import Flask, render_template, request, json, jsonify, flash, send_from_directory
 from flask_pymongo import MongoClient
 import urllib
 from werkzeug.utils import secure_filename
@@ -152,7 +152,7 @@ def login():
                         flash('Account does not exist.')
             except Exception as e:
                 print(e)
-                con.rollback()
+                #con.rollback()
                 flash('Error connecting to database...')
             finally:
                 con.close()
